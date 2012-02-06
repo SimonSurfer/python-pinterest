@@ -32,8 +32,13 @@ class PinterestAPI(object):
         
     def get_popular(self, page=1, limit=20):
         return self._get_request("popular", {"page": page, "limit": limit})
+        
+    def get_all(self, category="", page=1, limit=20):
+        return self._get_request("all", {"category": category,"page": page, "limit": limit})
 
-
+    def get_videos(self, page=1, limit=20):
+        return self._get_request("videos", {"page": page, "limit": limit})
+        
 class PinterestException(Exception):
     def __init__(self, description):
         self.description = description
