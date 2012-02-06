@@ -29,6 +29,9 @@ class PinterestAPI(object):
 
     def get_pin(self, pin_id):
         return self._get_request("pin/%d" %(pin_id))
+        
+    def get_popular(self, page=1, limit=20):
+        return self._get_request("popular", {"page": page, "limit": limit})
 
 
 class PinterestException(Exception):
