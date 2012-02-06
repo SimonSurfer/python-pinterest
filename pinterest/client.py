@@ -23,6 +23,14 @@ class PinterestAPI(object):
             return urllib2.urlopen(url).read()
         except urllib2.HTTPError, err:
             raise PinterestException(err.read())
+    
+    def _post_request(self, path, params={}, data={}):
+        params["access_token"] = self.access_token
+        url = "%s%s?%s" %(self.prefix_path, path, urllib.urlencode(params))
+        try:
+            return urllib2.urlopen(url,urllib.urlencode(data)).read()
+        except urllib2.HTTPError, err:
+            raise PinterestException(err.read())
 
     def get_homefeed(self, page=1, limit=20):
         return self._get_request("home", {"page": page, "limit": limit})
@@ -38,6 +46,12 @@ class PinterestAPI(object):
 
     def get_videos(self, page=1, limit=20):
         return self._get_request("videos", {"page": page, "limit": limit})
+        
+    def get_boards(self):
+        return self._get_request("boards")
+        
+    def get_activity(self):
+        return self._get_request("activity")
         
 class PinterestException(Exception):
     def __init__(self, description):
