@@ -1,3 +1,1 @@
-A python wrapper for the upcoming pinterest API.
-
-Stay tuned.
+The most complete python wrapper for the Pinterest API.
