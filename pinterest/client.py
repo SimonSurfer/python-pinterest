@@ -52,6 +52,10 @@ class PinterestAPI(object):
         
     def get_activity(self):
         return self._get_request("activity")
+    
+    #domain must be "pins","boards" or "people"
+    def get_search(self, domain="pins", query="", page=1, limit=20):
+        return self._get_request("search/%d" %(domain), {"query": query,"page": page, "limit": limit})
         
 class PinterestException(Exception):
     def __init__(self, description):
